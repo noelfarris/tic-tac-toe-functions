@@ -118,10 +118,12 @@ return object;
  */
 function validateMove(moveObject, gameBoard) {
 	if(moveObject.x > 2 || moveObject.x < 0 || moveObject.y > 2 || moveObject.y < 0) {
-    throw 'Invalid move: the coordinates are outside the game board';
+    	throw 'Invalid move: the coordinates are outside the game board';
 	} 
-	if()
-return moveObject;
+	if(gameBoard[moveObject.y][moveObject.x]!==' ') {
+		 throw 'Invalid move: that spot is already taken';
+	}
+return moveObject; 
 }
 /*
  * Convert the gameBoard matrix to a string. You can use \n to denote a newline
@@ -142,8 +144,10 @@ return moveObject;
  *   ~~~~~~~~~~~~~
  */
 function getGameBoardString(gameBoard) {
-
+ return '     1   2   3 \n  ~~~~~~~~~~~~~\n1 | '+ gameBoard[0][0] +' | '+ gameBoard[0][1] +' | '+ gameBoard[0][2] +' |\n  ~~~~~~~~~~~~~\n2 | '+ gameBoard[1][0] +' | '+ gameBoard[1][1] +' | '+ gameBoard[1][2] +' |\n  ~~~~~~~~~~~~~\n3 | '+ gameBoard[2][0] +' | '+ gameBoard[2][1] +' | '+ gameBoard[2][2] +' |\n  ~~~~~~~~~~~~~\n'
 }
+
+
 
 /*
  * Given a playerString (either 'X' or 'O'), a moveObject and a gameBoard
