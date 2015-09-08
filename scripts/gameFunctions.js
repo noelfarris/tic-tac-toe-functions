@@ -154,7 +154,8 @@ function getGameBoardString(gameBoard) {
  * matrix, make the move on the gameBoard and return the gameBoard.
  */
 function makeMove(playerString, moveObject, gameBoard) {
-
+	gameBoard[moveObject.y][moveObject.x] = playerString;
+	return gameBoard;
 }
 
 /*
@@ -163,7 +164,15 @@ function makeMove(playerString, moveObject, gameBoard) {
  * For example, the game board might be 3x3, 4x4, or 5x7.
  */
 function getEmptySpaceCount(gameBoard) {
+	var empty = 0
+	for(var i = 0; i < gameBoard.length; i++)
+		for(var j = 0; j < gameBoard[i].length; j++) {
 
+		if(gameBoard[i][j] === " ") {
+			empty++;
+		}
+	}
+return empty;
 }
 
 /*
@@ -172,7 +181,11 @@ function getEmptySpaceCount(gameBoard) {
  * 'O' and vice versa.
  */
 function getNextPlayer(currentPlayer) {
-
+	if(currentPlayer === 'X') {
+		return 'O';
+	} else {
+		return 'X';
+	}
 }
 
 /*
@@ -180,7 +193,64 @@ function getNextPlayer(currentPlayer) {
  * gameBoard matrix. If there is no winner than the function should return null.
  */
 function getWinner(gameBoard) {
-	
+	var rowOne = [gameBoard[0][0], gameBoard[0][1], gameBoard[0][2]];
+var rowTwo = [gameBoard[1][0], gameBoard[1][1], gameBoard[1][2]];
+var rowThree = [gameBoard[2][0], gameBoard[2][1], gameBoard[2][2]];
+var diagOne = [gameBoard[0][0], gameBoard[1][1], gameBoard[2][2]];
+var diagTwo = [gameBoard[0][2], gameBoard[1][1], gameBoard[2][0]];
+var colOne = [gameBoard[0][0], gameBoard[1][0], gameBoard[2][0]];
+var colTwo = [gameBoard[0][1], gameBoard[1][1], gameBoard[2][1]];
+var colThree = [gameBoard[0][2], gameBoard[1][2], gameBoard[2][2]];
+
+if (rowOne.toString() === 'X,X,X') {
+    return 'X'
+}
+else if (rowTwo.toString() === 'X,X,X') {
+    return 'X'
+}
+else if (rowThree.toString() === 'X,X,X') {
+    return 'X'
+}
+else if (diagOne.toString() === 'X,X,X') {
+    return 'X'
+}
+else if (diagTwo.toString() === 'X,X,X') {
+    return 'X'
+}
+else if (colOne.toString() === 'X,X,X') {
+    return 'X'
+}
+else if (colTwo.toString() === 'X,X,X') {
+    return 'X'
+}
+else if (colThree.toString() === 'X,X,X') {
+    return 'X'
+}
+if (rowOne.toString() === 'O,O,O') {
+    return 'O'
+}
+else if (rowTwo.toString() === 'O,O,O') {
+    return 'O'
+}
+else if (rowThree.toString() === 'O,O,O') {
+    return 'O'
+}
+else if (diagOne.toString() === 'O,O,O') {
+    return 'O'
+}
+else if (diagTwo.toString() === 'O,O,O') {
+    return 'O'
+}
+else if (colOne.toString() === 'O,O,O') {
+    return 'O'
+}
+else if (colTwo.toString() === 'O,O,O') {
+    return 'O'
+}
+else if (colThree.toString() === 'O,O,O') {
+    return 'O'
+}    
+return null;    
 }
 
 /*
