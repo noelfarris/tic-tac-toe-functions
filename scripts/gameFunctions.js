@@ -9,8 +9,17 @@
  * result in true.
  */
 function validateGameType(gameTypeString) {
-
-}
+	if(typeof gameTypeString === 'object') {
+		return false;
+	}
+	if(gameTypeString == "1" || gameTypeString.toLowerCase() === "one") {
+		return 1;
+	} else if(gameTypeString == "2" || gameTypeString.toLowerCase() === "two") {
+		return 2;
+	} else {
+		return false;
+	}
+} 
 
 /*
  * Returns the players name if it is a valid name. Valid names must only contain
@@ -18,6 +27,19 @@ function validateGameType(gameTypeString) {
  * false if the name is not valid.
  */
 function validateName(name) {
+	var letters = /^[A-Za-z]+$/;
+	var hyphen = "-";
+	var space = " "; 
+	if(typeof name !== 'string'){
+		return false;
+	} 
+ 	if(name.match(letters) || name.match(hyphen) || name.match(space)){
+   		return name;
+   } else if (name.length === 0) {
+   	return false;
+   } else {
+   	return false;
+   }
 
 }
 
@@ -25,7 +47,13 @@ function validateName(name) {
  * Randomly generates and returns a name for a computer player.
  */
 function generateComputerName() {
+	 var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
+    for( var i=0; i < 7; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
 }
 
 /*
@@ -51,6 +79,27 @@ function generateComputerName() {
  */
 function parseMove(moveString) {
 
+if (typeof moveString !== 'string') {
+	throw 'Invalid input: the move must be in the format "x y"';
+} else if (typeof moveString === 'object') {
+	throw 'Invalid input: the move must be in the format "x y"';
+}
+
+var p2Response = moveString.split(" ");
+var x = parseInt(p2Response[0])-1;
+var y = parseInt(p2Response[1])-1;
+var object = {
+	x: x,
+	y: y
+}
+if (p2Response.length > 2) {
+	throw 'Invalid input: the move must be in the format "x y"';
+} 
+
+if(x !== 2 && x !== 1 && x !== 0 || y !== 2 && y !== 1 && y !== 0) {
+    throw 'Invalid input: the move must be in the format "x y"';
+} 
+return object;
 }
 
 /*
@@ -68,9 +117,12 @@ function parseMove(moveString) {
  * If there are no errors then the function should return the move object.
  */
 function validateMove(moveObject, gameBoard) {
-
+	if(moveObject.x > 2 || moveObject.x < 0 || moveObject.y > 2 || moveObject.y < 0) {
+    throw 'Invalid move: the coordinates are outside the game board';
+	} 
+	if()
+return moveObject;
 }
-
 /*
  * Convert the gameBoard matrix to a string. You can use \n to denote a newline
  * within a string. For a matrix like this:
