@@ -261,6 +261,14 @@ return null;
  * insensitive, so it should accept both 'Y' and 'y' for example.
  */
 function validateYesNo(yesNoString) {
+	var yesNo = yesNoString.toLowerCase();
+	if(yesNo === 'y' || yesNo === 'yes') {
+		return true;
+	} else if(yesNo === 'n' || yesNo === 'no') {
+		return false;
+	} else {
+		return null;
+	}
 
 }
 
